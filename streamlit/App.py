@@ -135,6 +135,29 @@ def run():
                 st.error("No News found for {}".format(user_topic))
         else:
             st.warning("Please write Topic Name to Search")
+        
+        st.sidebar.image(image, use_column_width=False)
+    # navigation_option = st.sidebar.selectbox('Navigation', ['Home', 'Login', 'Signup'])
+
+    # if navigation_option == 'Home':
+    #     st.title("News Hub 📰")
+    #     # Rest of your code for displaying news goes here
+    # elif navigation_option == 'Login':
+    #     # Add your login form here
+    #     st.title("Login")
+    #     username = st.text_input("Username")
+    #     password = st.text_input("Password", type="password")
+    #     if st.button("Login"):
+    #         # Implement your login logic here
+    #         st.success(f"Logged in as {username}")
+    # elif navigation_option == 'Signup':
+    #     # Add your signup form here
+    #     st.title("Sign Up")
+    #     new_username = st.text_input("New Username")
+    #     new_password = st.text_input("New Password", type="password")
+    #     if st.button("Create Account"):
+    #         # Implement your signup logic here
+    #         st.success(f"Account created for {new_username}")
 
 
 run()
