@@ -1,0 +1,72 @@
+### V2.4.4
+	Theme standards
+
+### V2.4.3
+	Minor backend tweaks
+
+### V2.4.2
+	Security Fix
+
+### V2.4.1
+	Minor Backend tweaks
+	Improved accesibility with keyboard navigation
+
+### V2.4.0
+	Implemented everything in here: <a href="https://github.com/MachoThemes/newsmag-lite/milestone/11?closed=1"> Newsmag 2.4.0 </a>
+
+### V2.3.8
+	Fixed a bug where Video Formats would trigger an error if no video was found
+### V2.3.7
+	Updated: Updated epsilon framework to the newest version
+	Fixed: CSS Issue in admin welcome screen
+	New: Microformats2
+### V2.3.6
+	Removed Pirate Forms from recommended plugins
+### V2.3.5
+	Fixed: Issue with sidebar filtering
+### V2.3.4
+	Fixed: Added instagram into newmag icons
+### V2.3.3
+	Fixed: Preloader is loaded independently
+
+### V2.3.2
+	Fixed: Didn't allow removal of the Header Image
+	Enhacement: added a filter to disable the removal of sidebar widgets > add to functions.php add_filter( 'newsmag_widget_filtering', '__return_false' );
+
+### V2.3.1
+	Fixed: Recommended action index was not working properly in the customizer
+	Fixed: Newsmag no longer loads entire Font Awesome library
+	Enhacement: Added autofocus to input search - contribution @edgardmessias
+	Enhacement: Widgets now have an ordering option ( Ascending, Descending and Random )
+
+### V2.3.0
+	New: Timeline widget
+	New: Site preloader togglable from the customizer
+
+	Enhancement: A better support for video posts ( copy / paste youtube/vimeo link in your post )
+	Enhacement: Lazyloading has a toggle in the customizer
+
+	Bug fixes
+	Code optimization
+
+### V2.2.2
+	Updated recommended plugins
+
+### V2.2.1
+	Fixed a bug with lazy loading images
+
+### V2.2.0
+	Implemented everything in here: <a href="https://github.com/MachoThemes/newsmag-lite/milestone/3?closed=1"> Newsmag 2.2.0 </a> (bug fixes & improvements )
+
+### V2.1.2
+	Implemented everything in here: <a href="https://github.com/MachoThemes/newsmag-pro/milestone/3?closed=1"> Newsmag 2.1.2 </a> (5 bug fixes & improvements )
+
+### V2.1.1
+	Implemented everything in here: <a href="https://github.com/MachoThemes/newsmag-pro/milestone/2?closed=1"> Newsmag 2.1.1 </a> (13 bug fixes & improvements )
+
+### V2.0.1
+	Implemented everything in here: <a href="https://github.com/MachoThemes/newsmag-lite/milestone/1?closed=1"> Newsmag 2.1.0 </a> (44 bug fixes & improvements )
+
+### V2.0.0
+  Newsmag Lite - redesign
+  Implemented everything in here: <a href="https://github.com/MachoThemes/newsmag-lite/milestone/2?closed=1"> Newsmag 2.0.0 </a> ( 98 bug fixes & improvements )
