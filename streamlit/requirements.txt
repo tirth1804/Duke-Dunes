@@ -5,3 +5,7 @@ streamlit
 beautifulsoup4
 protobuf==3.20.0
 jinja2>=3.0
+pyperclip
+streamlit-authenticator
+firebase_admin
+streamlit_option_menu
