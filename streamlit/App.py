@@ -1,14 +1,23 @@
+import os
+import io
+import nltk
+import pyperclip
 import streamlit as st
 from PIL import Image
 from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen
 from newspaper import Article
-import io
-import nltk
-import pyperclip
+# from streamlit_option_menu import option_menu
+
+folder = "pages"
+topics= ['--Select--']
+for i in os.listdir(folder):
+    temp = i[:-3]
+    topics.append(temp)
+
 nltk.download('punkt')
 
-st.set_page_config(page_title='News Hub📰 Portal', page_icon='./assets/DDlogo.webp')
+st.set_page_config(page_title='News Hub 📰 Portal', page_icon='./assets/DDlogo.webp')
 
 def fetch_news_search_topic(topic):
     site = 'https://news.google.com/rss/search?q={}'.format(topic)
@@ -47,7 +56,7 @@ def fetch_news_poster(poster_link):
         image = Image.open(io.BytesIO(raw_data))
         st.image(image, use_column_width=True)
     except:
-        image = Image.open('./assests/no_image.jpg')
+        image = Image.open('./assets/no_image.png')
         st.image(image, use_column_width=True)
 
 
@@ -95,68 +104,64 @@ def run():
 
     with col3:
         st.write("")
-    category = ['--Select--', 'Trending News', 'Favourite Topics', 'Search Topic']
-    cat_op = st.selectbox('Select your Category', category)
-    if cat_op == category[0]:
-        st.warning('Please select Type!!')
-    elif cat_op == category[1]:
-        st.subheader("✅ Here is the Trending news for you")
-        no_of_news = st.slider('Number of News:', min_value=5, max_value=25, step=1)
+
+    chosen_topic = "Trending News"
+    user_topic = st.text_input("Enter your Topic")
+    no_of_news = st.slider('Number of News:', min_value=5, max_value=25, step=1)
+    if st.button("Search") and user_topic != '':
+        user_topic_pr = user_topic.replace(' ', '')
+        news_list = fetch_news_search_topic(topic=user_topic_pr)
+        if news_list:
+            st.subheader("✅ Here are the some {} News for you".format(user_topic.capitalize()))
+            display_news(news_list, no_of_news)
+        else:
+            st.error("No News found for {}".format(user_topic))
+    else:
+        # st.warning("Please write Topic Name to Search")
         news_list = fetch_top_news()
-        display_news(news_list, no_of_news)
-    elif cat_op == category[2]:
-        av_topics = ['Choose Topic', 'WORLD', 'NATION', 'BUSINESS', 'TECHNOLOGY', 'ENTERTAINMENT', 'SPORTS', 'SCIENCE',
-                     'HEALTH']
-        st.subheader("Choose your favourite Topic")
-        chosen_topic = st.selectbox("Choose your favourite Topic", av_topics)
-        if chosen_topic == av_topics[0]:
-            st.warning("Please Choose the Topic")
+        if news_list:
+            st.subheader("✅ Here are the some {} News for you".format(chosen_topic))
+            display_news(news_list, no_of_news)
         else:
-            no_of_news = st.slider('Number of News:', min_value=5, max_value=25, step=1)
-            news_list = fetch_category_news(chosen_topic)
-            if news_list:
-                st.subheader("✅ Here are the some {} News for you".format(chosen_topic))
-                display_news(news_list, no_of_news)
-            else:
-                st.error("No News found for {}".format(chosen_topic))
-
-    elif cat_op == category[3]:
-        user_topic = st.text_input("Enter your Topic")
-        no_of_news = st.slider('Number of News:', min_value=5, max_value=15, step=1)
-
-        if st.button("Search") and user_topic != '':
-            user_topic_pr = user_topic.replace(' ', '')
-            news_list = fetch_news_search_topic(topic=user_topic_pr)
-            if news_list:
-                st.subheader("✅ Here are the some {} News for you".format(user_topic.capitalize()))
-                display_news(news_list, no_of_news)
-            else:
-                st.error("No News found for {}".format(user_topic))
-        else:
-            st.warning("Please write Topic Name to Search")
+            st.error("No News found for {}".format(chosen_topic))
         
-        st.sidebar.image(image, use_column_width=False)
-    # navigation_option = st.sidebar.selectbox('Navigation', ['Home', 'Login', 'Signup'])
+    # cat_op = st.selectbox('Select your Category', topics)
+    # if cat_op == topics[0]:
+    #     st.warning('Please select Type!!')
+    # news_list = fetch_top_news()
+    # if news_list:
+    #     st.subheader("✅ Here are the some {} News for you".format(chosen_topic))
+    #     display_news(news_list, no_of_news)
+    # else:
+    #     st.error("No News found for {}".format(chosen_topic))
+    
+    
+    
+    # with st.sidebar:        
+    #     app = option_menu(
+    #         menu_title='News Hub',
+    #         options=['Home','Account','Trending','Your Posts','about'],
+    #         icons=['house-fill','person-circle','trophy-fill','chat-fill','info-circle-fill'],
+    #         menu_icon='chat-text-fill',
+    #         default_index=1,
+    #         styles={"container": {"padding": "5!important","background-color":'black'},
+    #                 "icon": {"color": "white", "font-size": "23px"}, 
+    #                 "nav-link": {"color":"white","font-size": "20px", "text-align": "left", "margin":"0px", "--hover-color": "blue"},
+    #                 "nav-link-selected": {"background-color": "#02ab21"}
+    #                 }
+    #     )
 
-    # if navigation_option == 'Home':
-    #     st.title("News Hub 📰")
-    #     # Rest of your code for displaying news goes here
-    # elif navigation_option == 'Login':
-    #     # Add your login form here
-    #     st.title("Login")
-    #     username = st.text_input("Username")
-    #     password = st.text_input("Password", type="password")
-    #     if st.button("Login"):
-    #         # Implement your login logic here
-    #         st.success(f"Logged in as {username}")
-    # elif navigation_option == 'Signup':
-    #     # Add your signup form here
-    #     st.title("Sign Up")
-    #     new_username = st.text_input("New Username")
-    #     new_password = st.text_input("New Password", type="password")
-    #     if st.button("Create Account"):
-    #         # Implement your signup logic here
-    #         st.success(f"Account created for {new_username}")
-
+    
+    # if app == "Home":
+    #     business.app()
+    # if app == "Account":
+    #     test.app()    
+    # if app == "Trending":
+    #     trending.app()        
+    # if app == 'Your Posts':
+    #     your.app()
+    # if app == 'about':
+    #     about.app()
+             
 
 run()

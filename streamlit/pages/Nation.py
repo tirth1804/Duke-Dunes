@@ -47,7 +47,7 @@ def fetch_news_poster(poster_link):
         image = Image.open(io.BytesIO(raw_data))
         st.image(image, use_column_width=True)
     except:
-        image = Image.open('./assests/no_image.jpg')
+        image = Image.open('./assets/no_image.png')
         st.image(image, use_column_width=True)
 
 
