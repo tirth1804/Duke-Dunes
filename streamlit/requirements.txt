@@ -7,5 +7,5 @@ protobuf
 jinja2>=3.0
 pyperclip
 streamlit-authenticator
-firebase_admin
+streamlit firebase_admin
 streamlit_option_menu
