@@ -8,8 +8,7 @@ import nltk
 import pyperclip
 nltk.download('punkt')
 
-st.set_page_config(page_title='News Hub📰 Portal', page_icon='./Meta/DDlogo.webp')
-
+st.set_page_config(page_title='News Hub📰 Portal', page_icon='./assets/DDlogo.webp')
 
 def fetch_news_search_topic(topic):
     site = 'https://news.google.com/rss/search?q={}'.format(topic)
@@ -48,7 +47,7 @@ def fetch_news_poster(poster_link):
         image = Image.open(io.BytesIO(raw_data))
         st.image(image, use_column_width=True)
     except:
-        image = Image.open('./Meta/no_image.jpg')
+        image = Image.open('./assests/no_image.jpg')
         st.image(image, use_column_width=True)
 
 
@@ -83,7 +82,7 @@ def display_news(list_of_news, news_quantity):
 
 def run():
     st.title("News Hub 📰")
-    image = Image.open('./Meta/whitelogo.png')
+    image = Image.open('./assets/whitelogo.png')
     
 
     col1, col2, col3 = st.columns([3, 5, 3])
